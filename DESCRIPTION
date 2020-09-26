@@ -1,0 +1,19 @@
+Package: pdf2pptx
+Title: Renders PDF presentations into PPTX files
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Jiri",
+           family = "Lukavsky",
+           role = c("aut", "cre"),
+           email = "jiri.lukavsky@ff.cuni.cz",
+           comment = c(ORCID = "0000-0002-1082-229X"))
+Description: The package extends R Markdown workflow. It allows to renders Beamer presenations into images and creates a PPTX presentation from these images. This allows to present in environments which require PowerPoint files, without compromising rendering quality or introducing potential font/resizing problems.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    officer,
+    magick,
+    pdftools

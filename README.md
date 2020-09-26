@@ -1,15 +1,33 @@
+
 # pdf2pptx
 
-Simple R script for converting PDF presentations into PPTX format (based on images).
+<!-- badges: start -->
+<!-- badges: end -->
 
-## Usage
+The package pdf2pptx is a simple tool for converting PDF presentations into PPTX format (based on images). 
 
-Source the `pdf2pptx.R` file into your environment. This will require several packages (`officer`, `magick`, `pdftools`) and one function called `pdf2pptx`. 
+It is implemented in R to easily extend [R Markdown](https://bookdown.org/yihui/rmarkdown/beamer-presentation.html) workflow. This way you can convert your presentation to PPTX and easily present on platforms like MS Teams, where PDF presentation is problematic.
 
-To use:
+Under the hood, the package uses `officer`, `magick`, `pdftools` packages.
 
+## Installation
+
+You can install the released version of pdf2pptx from [GitHub](https://github.com/jirilukavsky/pdf2pptx) with:
+
+``` r
+# Install devtools package if necessary
+if(!"devtools" %in% rownames(installed.packages())) install.packages("devtools")
+
+# Install the stable verion from GitHub
+devtools::install_github("jirilukavsky/pdf2pptx")
 ```
-pdf2pptx(pdf_filename, pptx_filename)
+
+## Example
+
+To convert a PowerPoint file, simply call `pdf2pptx` command and specify the source and destination file names:
+
+``` r
+library(pdf2pptx)
+pdf2pptx("your.pdf", "your.pptx")
 ```
 
-You can specify image density with optional parameter `density = 300`.
