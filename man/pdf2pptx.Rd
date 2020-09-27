@@ -4,7 +4,7 @@
 \alias{pdf2pptx}
 \title{Convert PDF to PPTX}
 \usage{
-pdf2pptx(pdf_filename, pptx_filename, dpi = 300)
+pdf2pptx(pdf_filename, pptx_filename, dpi = 300, path = NULL)
 }
 \arguments{
 \item{pdf_filename}{File name of the source PDF file}
@@ -12,6 +12,8 @@ pdf2pptx(pdf_filename, pptx_filename, dpi = 300)
 \item{pptx_filename}{File name of the destination PPTX file}
 
 \item{dpi}{Optional parameter specifying image density for rendering images from PDF}
+
+\item{path}{Directory where to put rendered images. If \code{NULL}, temporary folder is used and the images are deleted.}
 }
 \value{
 Nothing

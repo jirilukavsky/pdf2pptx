@@ -4,6 +4,7 @@
 #' @param pdf_filename File name of the source PDF file
 #' @param pptx_filename File name of the destination PPTX file
 #' @param dpi Optional parameter specifying image density for rendering images from PDF
+#' @param path Directory where to put rendered images. If `NULL`, temporary folder is used and the images are deleted.
 #'
 #' @return Nothing
 #' @export
@@ -14,10 +15,19 @@
 #' # conversion takes several seconds
 #' pdf2pptx(example_from_url, "demo.pptx")
 #' unlink("demo.pptx")
-pdf2pptx <- function(pdf_filename, pptx_filename, dpi = 300) {
+pdf2pptx <- function(
+  pdf_filename,
+  pptx_filename,
+  dpi = 300,
+  path = NULL
+  ) {
 
-  folder_for_files <- file.path(tempdir(), "pdf_images")
-  dir.create(folder_for_files)
+  if (is.null(path)) {
+    folder_for_files <- file.path(tempdir(), "pdf_images")
+    dir.create(folder_for_files)
+  } else {
+    folder_for_files <- path
+  }
 
   # turn pdf into png files
   img_pdf <- magick::image_read_pdf(pdf_filename, density = dpi)
@@ -44,5 +54,7 @@ pdf2pptx <- function(pdf_filename, pptx_filename, dpi = 300) {
   }
   print(pptx, target = pptx_filename)
 
-  unlink(folder_for_files, recursive = T)
+  if (is.null(path)) {
+    unlink(folder_for_files, recursive = T)
+  }
 }
