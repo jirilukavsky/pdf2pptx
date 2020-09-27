@@ -8,6 +8,8 @@ The package pdf2pptx is a simple tool for converting PDF presentations into PPTX
 
 It is implemented in R to easily extend [R Markdown](https://bookdown.org/yihui/rmarkdown/beamer-presentation.html) workflow. This way you can convert your presentation to PPTX and easily present on platforms like MS Teams, where PDF presentation is problematic. Other potential use cases are recording audio comments or inserting your slides into a larger presentation.
 
+The resulting PPTX is editable - meaning you can add some additional images or overlay content. Because the slides are rendered as images, the text is naturally not editable.
+
 Under the hood, the package uses `officer`, `magick`, `pdftools` packages.
 
 ## Installation
