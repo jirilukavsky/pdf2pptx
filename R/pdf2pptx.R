@@ -5,6 +5,8 @@
 #' @param pptx_filename File name of the destination PPTX file
 #' @param dpi Optional parameter specifying image density for rendering images from PDF
 #' @param path Directory where to put rendered images. If `NULL`, temporary folder is used and the images are deleted.
+#' @param ratio Fast option to switch between 4:3 (default) and 16:9, without the need to add new template.
+#' @param template Alternative PPTX file used as template. Useful for different aspect ratios.
 #'
 #' @return Nothing
 #' @export
@@ -19,7 +21,9 @@ pdf2pptx <- function(
   pdf_filename,
   pptx_filename,
   dpi = 300,
-  path = NULL
+  path = NULL,
+  ratio = c(43, 169),
+  template = NULL
   ) {
 
   if (is.null(path)) {
@@ -27,6 +31,10 @@ pdf2pptx <- function(
     dir.create(folder_for_files)
   } else {
     folder_for_files <- path
+  }
+
+  if (is.null(template) & ratio[1] == 169) {
+    template <- system.file(package = "pdf2pptx", "template/template169.pptx")
   }
 
   # turn pdf into png files
@@ -43,7 +51,11 @@ pdf2pptx <- function(
   }
 
   # insert png files into pptx
-  pptx <- officer::read_pptx()
+  if (is.null(template)) {
+    pptx <- officer::read_pptx()
+  } else {
+    pptx <- officer::read_pptx(template)
+  }
   # for info use layout_summary(pptx)
   for (i in 1:n_slides) {
     pptx <- officer::add_slide(pptx, layout = "Blank", master = "Office Theme")

@@ -4,7 +4,14 @@
 \alias{pdf2pptx}
 \title{Convert PDF to PPTX}
 \usage{
-pdf2pptx(pdf_filename, pptx_filename, dpi = 300, path = NULL)
+pdf2pptx(
+  pdf_filename,
+  pptx_filename,
+  dpi = 300,
+  path = NULL,
+  ratio = c(43, 169),
+  template = NULL
+)
 }
 \arguments{
 \item{pdf_filename}{File name of the source PDF file}
@@ -14,6 +21,10 @@ pdf2pptx(pdf_filename, pptx_filename, dpi = 300, path = NULL)
 \item{dpi}{Optional parameter specifying image density for rendering images from PDF}
 
 \item{path}{Directory where to put rendered images. If \code{NULL}, temporary folder is used and the images are deleted.}
+
+\item{ratio}{Fast option to switch between 4:3 (default) and 16:9, without the need to add new template.}
+
+\item{template}{Alternative PPTX file used as template. Useful for different aspect ratios.}
 }
 \value{
 Nothing
